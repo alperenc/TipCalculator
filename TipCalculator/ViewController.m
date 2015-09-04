@@ -10,6 +10,7 @@
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
+@property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
 
 @end
 
@@ -37,7 +38,9 @@
     
     NSNumber *tipAmount = @(billAmount.floatValue * 0.15);
     
-    NSLog(@"%.2f", tipAmount.floatValue);
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    
+    self.tipAmountLabel.text = [NSString stringWithFormat:@"You should tip: %@", [formatter stringFromNumber:tipAmount]];
     
 }
 

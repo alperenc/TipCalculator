@@ -34,12 +34,23 @@
                                     <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TlM-SA-sQQ"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hk1-Jq-3ZK">
+                                <rect key="frame" x="16" y="76" width="568" height="48"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="centerX" secondItem="Hk1-Jq-3ZK" secondAttribute="centerX" id="5Q9-b3-1pt"/>
                             <constraint firstAttribute="centerX" secondItem="JSZ-Cr-5bE" secondAttribute="centerX" id="EeM-aD-Ik2"/>
                             <constraint firstItem="JSZ-Cr-5bE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Oh7-Bq-ukr"/>
+                            <constraint firstItem="Hk1-Jq-3ZK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QoV-8L-k1S"/>
+                            <constraint firstAttribute="centerY" secondItem="Hk1-Jq-3ZK" secondAttribute="centerY" multiplier="3" id="gV2-Gi-FGO"/>
+                            <constraint firstItem="Hk1-Jq-3ZK" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="lIr-Vc-wZS"/>
                             <constraint firstAttribute="centerY" secondItem="uGZ-Dy-1Ps" secondAttribute="centerY" id="pCJ-hf-chg"/>
                             <constraint firstAttribute="centerY" secondItem="JSZ-Cr-5bE" secondAttribute="centerY" multiplier="1.5" id="put-s7-CT7"/>
                             <constraint firstItem="JSZ-Cr-5bE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vfo-hm-rJQ"/>
@@ -48,6 +59,7 @@
                     </view>
                     <connections>
                         <outlet property="billAmountTextField" destination="JSZ-Cr-5bE" id="JBc-KG-ycx"/>
+                        <outlet property="tipAmountLabel" destination="Hk1-Jq-3ZK" id="VOo-af-3CT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
