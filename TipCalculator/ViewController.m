@@ -21,15 +21,21 @@
     
     self.billAmountTextField.delegate = self;
     
-    // Do any additional setup after loading the view, typically from a nib.
+    UIToolbar *accessoryView = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44.0)];
+    UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+                                                                          target:self
+                                                                          action:@selector(calculateTip)];
+    
+    [accessoryView setItems:@[[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+                                                                          target:nil
+                                                                          action:nil],
+                              done]];
+    
+    self.billAmountTextField.inputAccessoryView = accessoryView;
+
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (IBAction)calculateTip:(UIButton *)sender {
+- (IBAction)calculateTip {
     
     NSNumberFormatter *formatter = [NSNumberFormatter new];
     formatter.numberStyle = NSNumberFormatterDecimalStyle;
@@ -42,12 +48,14 @@
     
     self.tipAmountLabel.text = [NSString stringWithFormat:@"You should tip: %@", [formatter stringFromNumber:tipAmount]];
     
+    [self.billAmountTextField resignFirstResponder];
+    
 }
 
 // UITextFieldDelegate methods
 
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
-    [textField resignFirstResponder];
+    [self calculateTip];
     return YES;
 }
 
