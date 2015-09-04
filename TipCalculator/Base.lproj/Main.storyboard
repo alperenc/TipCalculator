@@ -24,14 +24,26 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="go" enablesReturnKeyAutomatically="YES"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uGZ-Dy-1Ps">
+                                <rect key="frame" x="255" y="285" width="90" height="30"/>
+                                <animations/>
+                                <state key="normal" title="Calculate Tip">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="calculateTip:" destination="BYZ-38-t0r" eventType="touchUpInside" id="TlM-SA-sQQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="JSZ-Cr-5bE" secondAttribute="centerX" id="EeM-aD-Ik2"/>
                             <constraint firstItem="JSZ-Cr-5bE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Oh7-Bq-ukr"/>
+                            <constraint firstAttribute="centerY" secondItem="uGZ-Dy-1Ps" secondAttribute="centerY" id="pCJ-hf-chg"/>
                             <constraint firstAttribute="centerY" secondItem="JSZ-Cr-5bE" secondAttribute="centerY" multiplier="1.5" id="put-s7-CT7"/>
                             <constraint firstItem="JSZ-Cr-5bE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vfo-hm-rJQ"/>
+                            <constraint firstAttribute="centerX" secondItem="uGZ-Dy-1Ps" secondAttribute="centerX" id="zxP-Je-Cjq"/>
                         </constraints>
                     </view>
                     <connections>

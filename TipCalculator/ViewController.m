@@ -28,6 +28,21 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (IBAction)calculateTip:(UIButton *)sender {
+    
+    NSNumberFormatter *formatter = [NSNumberFormatter new];
+    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    
+    NSNumber *billAmount = [formatter numberFromString:self.billAmountTextField.text];
+    
+    NSNumber *tipAmount = @(billAmount.floatValue * 0.15);
+    
+    NSLog(@"%.2f", tipAmount.floatValue);
+    
+}
+
+// UITextFieldDelegate methods
+
 -(BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder];
     return YES;
