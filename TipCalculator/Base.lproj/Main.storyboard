@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount:" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JSZ-Cr-5bE">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter bill amount" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JSZ-Cr-5bE">
                                 <rect key="frame" x="16" y="185" width="568" height="30"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -34,19 +34,27 @@
                                     <action selector="calculateTip" destination="BYZ-38-t0r" eventType="touchUpInside" id="Nhj-UN-2Sc"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hk1-Jq-3ZK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip Amount will be shown here." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hk1-Jq-3ZK">
                                 <rect key="frame" x="16" y="76" width="568" height="48"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="thin" pointSize="40"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter tip percentage (%)" textAlignment="center" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="6iE-rS-Brc">
+                                <rect key="frame" x="16" y="223" width="568" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                            </textField>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="Hk1-Jq-3ZK" secondAttribute="centerX" id="5Q9-b3-1pt"/>
+                            <constraint firstItem="6iE-rS-Brc" firstAttribute="top" secondItem="JSZ-Cr-5bE" secondAttribute="bottom" constant="8" id="D26-CQ-NVG"/>
                             <constraint firstAttribute="centerX" secondItem="JSZ-Cr-5bE" secondAttribute="centerX" id="EeM-aD-Ik2"/>
+                            <constraint firstItem="6iE-rS-Brc" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="Ms4-ub-IAj"/>
                             <constraint firstItem="JSZ-Cr-5bE" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="Oh7-Bq-ukr"/>
                             <constraint firstItem="Hk1-Jq-3ZK" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="QoV-8L-k1S"/>
                             <constraint firstAttribute="centerY" secondItem="Hk1-Jq-3ZK" secondAttribute="centerY" multiplier="3" id="gV2-Gi-FGO"/>
@@ -54,12 +62,14 @@
                             <constraint firstAttribute="centerY" secondItem="uGZ-Dy-1Ps" secondAttribute="centerY" id="pCJ-hf-chg"/>
                             <constraint firstAttribute="centerY" secondItem="JSZ-Cr-5bE" secondAttribute="centerY" multiplier="1.5" id="put-s7-CT7"/>
                             <constraint firstItem="JSZ-Cr-5bE" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="vfo-hm-rJQ"/>
+                            <constraint firstItem="6iE-rS-Brc" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="wY3-Yk-BKK"/>
                             <constraint firstAttribute="centerX" secondItem="uGZ-Dy-1Ps" secondAttribute="centerX" id="zxP-Je-Cjq"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="billAmountTextField" destination="JSZ-Cr-5bE" id="JBc-KG-ycx"/>
                         <outlet property="tipAmountLabel" destination="Hk1-Jq-3ZK" id="VOo-af-3CT"/>
+                        <outlet property="tipPercentageTextField" destination="6iE-rS-Brc" id="dD8-N2-K5p"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
