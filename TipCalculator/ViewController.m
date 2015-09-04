@@ -12,7 +12,9 @@
 @property (weak, nonatomic) IBOutlet UITextField *billAmountTextField;
 @property (weak, nonatomic) IBOutlet UITextField *tipPercentageTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipAmountLabel;
+@property (weak, nonatomic) IBOutlet UISlider *tipAdjustmentSlider;
 @property (strong, nonatomic) UIToolbar *accessoryView;
+@property (strong, nonatomic) NSNumberFormatter *formatter;
 
 @end
 
@@ -20,6 +22,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.formatter = [NSNumberFormatter new];
     
     self.billAmountTextField.delegate = self;
     self.tipPercentageTextField.delegate = self;
@@ -40,57 +44,43 @@
                                                                                  action:nil],
                                    done]];
     
-//    self.billAmountTextField.inputAccessoryView = self.accessoryView;
-//    self.tipPercentageTextField.inputAccessoryView = self.accessoryView;
+    self.tipAdjustmentSlider.value = 15.0;
 
 }
 
 - (IBAction)calculateTip {
+
+    self.formatter.numberStyle = NSNumberFormatterDecimalStyle;
     
-    NSNumberFormatter *formatter = [NSNumberFormatter new];
-    formatter.numberStyle = NSNumberFormatterDecimalStyle;
+    NSNumber *billAmount = [self.formatter numberFromString:self.billAmountTextField.text];
     
-    NSNumber *billAmount = [formatter numberFromString:self.billAmountTextField.text];
-    
-    NSNumber *tipPercentage = [formatter numberFromString:self.tipPercentageTextField.text];
+    NSNumber *tipPercentage = [self.formatter numberFromString:self.tipPercentageTextField.text];
     
     NSNumber *tipAmount;
     
-    if (tipPercentage.floatValue != 0.0) {
+    if (![self.tipPercentageTextField.text isEqualToString:@""]) {
         tipAmount = @(billAmount.floatValue * tipPercentage.floatValue / 100.0);
+        self.tipAdjustmentSlider.value = [[self.formatter numberFromString:self.tipPercentageTextField.text] floatValue];
     } else {
+        self.tipPercentageTextField.text = [NSString stringWithFormat:@"%d", 15];
         tipAmount = @(billAmount.floatValue * 0.15);
     }
     
-    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    self.formatter.numberStyle = NSNumberFormatterCurrencyStyle;
     
-    self.tipAmountLabel.text = [NSString stringWithFormat:@"You should tip: %@", [formatter stringFromNumber:tipAmount]];
+    self.tipAmountLabel.text = [NSString stringWithFormat:@"You should tip: %@", [self.formatter stringFromNumber:tipAmount]];
     
     [self.billAmountTextField resignFirstResponder];
     [self.tipPercentageTextField resignFirstResponder];
     
 }
 
-// UITextFieldDelegate methods
-
--(BOOL)textFieldShouldReturn:(UITextField *)textField {
+- (IBAction)adjustTipPercentage:(UISlider *)sender {
+    self.tipPercentageTextField.text = [NSString stringWithFormat:@"%d", (int)sender.value];
     [self calculateTip];
-    [textField resignFirstResponder];
-    
-    return YES;
 }
 
--(void)textFieldDidBeginEditing:(UITextField *)textField {
-    if (textField == self.billAmountTextField) {
-        [[self.accessoryView.items objectAtIndex:0] setEnabled:NO];
-        [[self.accessoryView.items objectAtIndex:1] setEnabled:YES];
-        textField.inputAccessoryView = self.accessoryView;
-    } else if (textField == self.tipPercentageTextField) {
-        [[self.accessoryView.items objectAtIndex:0] setEnabled:YES];
-        [[self.accessoryView.items objectAtIndex:1] setEnabled:NO];
-        textField.inputAccessoryView = self.accessoryView;
-    }
-}
+
 
 - (void) nextTextField {
     if (self.billAmountTextField) {
@@ -104,6 +94,26 @@
         [self.tipPercentageTextField resignFirstResponder];
         [self.billAmountTextField becomeFirstResponder];
     }
+}
+
+// UITextFieldDelegate methods
+
+-(void)textFieldDidBeginEditing:(UITextField *)textField {
+    if (textField == self.billAmountTextField) {
+        [[self.accessoryView.items objectAtIndex:0] setEnabled:NO];
+        [[self.accessoryView.items objectAtIndex:1] setEnabled:YES];
+        textField.inputAccessoryView = self.accessoryView;
+    } else if (textField == self.tipPercentageTextField) {
+        [[self.accessoryView.items objectAtIndex:0] setEnabled:YES];
+        [[self.accessoryView.items objectAtIndex:1] setEnabled:NO];
+        textField.inputAccessoryView = self.accessoryView;
+    }
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField {
+    [textField resignFirstResponder];
+    
+    return YES;
 }
 
 @end
