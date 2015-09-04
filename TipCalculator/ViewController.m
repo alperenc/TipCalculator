@@ -43,8 +43,6 @@
                                                                                  target:nil
                                                                                  action:nil],
                                    done]];
-    
-    self.tipAdjustmentSlider.value = 15.0;
 
 }
 
@@ -64,6 +62,7 @@
     } else {
         self.tipPercentageTextField.text = [NSString stringWithFormat:@"%d", 15];
         tipAmount = @(billAmount.floatValue * 0.15);
+        self.tipAdjustmentSlider.value = 15.0;
     }
     
     self.formatter.numberStyle = NSNumberFormatterCurrencyStyle;
